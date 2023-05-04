@@ -1,0 +1,49 @@
+{
+    "global_details": {
+        "postgres_conn_id": "postgres_default",
+        "scraping_start_year": "2022",
+        "scraping_end_year": "2023",
+        "scheduler": "*/3 6-7 * * 2"
+    },
+    "credentials":{},
+    "bronze_layer": {
+        "bronze_destination_url": "/mnt/deltalake/bronze",
+        "datasets": [
+            {
+                "query_target": "games",
+                "url_config": {
+                    "url": "www.pro-football-reference.com/years/{year}/games.htm",
+                    "table_id": "games"
+                },
+                "query_year": "2022",
+                "query_year_range": "2019-2022",
+                "query_team_name": "test",
+                "primary_key": "True",
+                "preprocessing_config": {
+                    "headers": [0]
+                },
+                "cron_scheduler": "*/3 6-7 * * 2"
+                
+        },
+        {
+            "query_target": "all_teams",
+            "url_config": {
+                "url": "www.pro-football-reference.com/teams/",
+                "table_id": "teams_active"
+            },
+            "query_year": "",
+            "query_team_name": "",
+            "primary_key": "True",
+            "preprocessing_config": {
+                "headers": [
+                    0,1
+                ]
+            },
+            "cron_scheduler": "*/3 6-7 * * 2"
+        }
+    ]
+    },
+    "silver_layer": {},
+    "gold_layer": {},
+    "machine_learning": {}
+}

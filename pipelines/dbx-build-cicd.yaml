@@ -1,0 +1,26 @@
+# Pipeline to run tests on Pull Requests. On creating a PR on GitHub,
+# the pipeline should trigger and run a notebook job on the test notebook 
+# and update results on GitLab / Azure DevOps. 
+# After the results are copied and published the task, deletes the notebooks 
+# from DBFS.
+
+pr:
+  branches:
+    include:
+      - develop
+
+variables:
+  - group: dbx-cicd-dev
+
+pool:
+  name: some-agent-pool
+
+stages:
+  - stage: Build
+    displayName: 'Build stage'
+    jobs:
+    - job: build_wheel
+      displayName: 'Building wheel'
+    
+  - stage: dbx-cicd-dev
+    

@@ -1,0 +1,3 @@
+from helpers.fernet_helper import generate_random_fernet_keys
+
+generate_random_fernet_keys()
